@@ -1,4 +1,4 @@
-Liquid Glass:
+Liquid Glass Safari Optimized:
   modes:
     light:
       primary-background-color: rgb(76, 80, 84)
@@ -147,7 +147,7 @@ Liquid Glass:
   ha-color-fill-primary-quiet-resting: rgba(255, 255, 255, 0.12) # selection color
   ha-color-fill-primary-quiet-hover: rgba(255, 255, 255, 0.2) # selection hover color
 
-  card-mod-theme: "Liquid Glass"
+  card-mod-theme: "Liquid Glass Safari Optimized"
   card-mod-drawer: |
     .mdc-drawer {
       background-color: var(--app-header-background-color) !important;

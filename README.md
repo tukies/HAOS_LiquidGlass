@@ -1,4 +1,4 @@
-# Liquid Glass Theme for Home Assistant
+# Liquid Glass Safari Optimized for Home Assistant
 
 Safari-focused Liquid Glass theme for Home Assistant dashboards on iPhone, iPad, and macOS.
 
@@ -15,9 +15,9 @@ https://github.com/tukies/HAOS_LiquidGlass
 ```
 
 4. Set the category to `Theme`.
-5. Download `Liquid Glass Theme`.
+5. Download `Liquid Glass Safari Optimized`.
 6. Reload themes or restart Home Assistant.
-7. Select the `Liquid Glass` theme from your user profile.
+7. Select the `Liquid Glass Safari Optimized` theme from your user profile.
 
 You can also open the repository flow directly:
 
@@ -43,14 +43,14 @@ The CSS intentionally avoids SVG displacement filters and WebGL effects because 
 ## Default Theme Automation
 
 ```yaml
-alias: Frontend - Set Liquid Glass theme
+alias: Frontend - Set Liquid Glass Safari Optimized theme
 trigger:
   - platform: homeassistant
     event: start
 action:
   - service: frontend.set_theme
     data:
-      name: Liquid Glass
+      name: Liquid Glass Safari Optimized
 ```
 
 ## Credits
