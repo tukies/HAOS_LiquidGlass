@@ -1,6 +1,6 @@
 {
-    "name": "visionOS & iOS 26 Liquid Glass Theme",
+    "name": "Liquid Glass Theme",
+    "filename": "liquid_glass.yaml",
     "homeassistant": "2024.5.0b0",
     "render_readme": true
 }
-  
