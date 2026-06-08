@@ -165,10 +165,17 @@ Liquid Glass Safari Optimized:
     }
   card-mod-card-yaml: |
     .: |
+      /*
+       * The glass is painted by a ::before overlay kept at z-index: -1, i.e.
+       * BEHIND all card content. Do NOT add `isolation: isolate`, `overflow:
+       * hidden`, a positive z-index on ::before, or a `ha-card > *` z-index
+       * lift here: each of those creates a stacking context / clip on every
+       * card that traps pop-outs which rely on escaping the card (Bubble Card
+       * pop-ups, dropdown/select menus, sub-button popovers, more-info). When
+       * trapped, those pop-outs get painted under sibling cards and lose taps.
+       */
       ha-card {
         position: relative;
-        isolation: isolate;
-        overflow: hidden;
         background: var(--ha-card-background) !important;
         -webkit-backdrop-filter: none !important;
         backdrop-filter: unset !important;
@@ -182,14 +189,10 @@ Liquid Glass Safari Optimized:
           var(--ha-card-background);
         -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
         backdrop-filter: var(--ha-card-backdrop-filter);
-        z-index: 0;
+        z-index: -1;
         pointer-events: none;
         border-radius: inherit;
         box-shadow: var(--ha-card-box-shadow);
-      }
-      ha-card > * {
-        position: relative;
-        z-index: 1;
       }
       :host(hui-heading-card) ha-card {
         background: none !important;
