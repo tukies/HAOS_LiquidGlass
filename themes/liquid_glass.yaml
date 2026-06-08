@@ -149,7 +149,7 @@ Liquid Glass Safari Optimized:
 
   card-mod-theme: "Liquid Glass Safari Optimized"
   card-mod-drawer: |
-    .mdc-drawer {
+    .mdc-drawer, .sidebar-shell {
       background-color: var(--app-header-background-color) !important;
       -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
       backdrop-filter: var(--ha-card-backdrop-filter);
@@ -157,6 +157,12 @@ Liquid Glass Safari Optimized:
   card-mod-sidebar: |
     :host {
       background: none !important;
+    }
+
+    ha-list-item-button,
+    ha-list-item-button.selected::before {
+      border-radius: var(--ha-card-border-radius) !important;
+      --ha-list-item-focus-radius: var(--ha-card-border-radius) !important;
     }
 
     ha-md-list-item,

@@ -38,6 +38,9 @@ After changing `configuration.yaml`, restart Home Assistant. After theme updates
 
 The theme uses Home Assistant theme variables plus global card styles through card-mod-compatible theme hooks. Install either `card-mod` or [`uix`](https://github.com/Lint-Free-Technology/uix) through HACS for the full glass card and sidebar treatment.
 
+> [!NOTE]
+> If you use `uix` for the transparent sidebar, remember to [add its UI extension service](https://uix.lf.technology/quick-start/#add-ui-extension-service) after installing the integration — installing it from HACS alone is not enough.
+
 The CSS intentionally avoids SVG displacement filters and WebGL effects because this theme is targeted at Safari/WebKit.
 
 ## Default Theme Automation
