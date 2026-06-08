@@ -58,6 +58,14 @@ Liquid Glass Safari Optimized:
   paper-card-background-color: var(--ha-card-background)
   rgb-card-background-color: rgb(10, 10, 10) # see https://github.com/basnijholt/lovelace-ios-themes/issues/60
   ha-card-border-width: 0 # https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/82#event-7732695357
+  # Blur radius is the #1 performance cost on large dashboards: every card
+  # re-samples the wallpaper behind it on each scroll frame, and the cost scales
+  # with both blur radius and the number of cards. 8px is a deliberately modest
+  # value. For very large dashboards or older iPhones/iPads, switch to a "lite"
+  # look by reducing or dropping the blur (the tint + edge highlights remain):
+  #   ha-card-backdrop-filter: saturate(1.55)   # vibrancy only, no blur (cheapest)
+  #   ha-card-backdrop-filter: blur(4px) saturate(1.55)
+  # See the "Performance on large dashboards" section of the README.
   ha-card-backdrop-filter: blur(8px) saturate(1.55)
   ha-card-box-shadow: >
     3px 3px 0.5px -3.5px rgba(255, 255, 255, 0.30) inset, -2px -2px 0.5px -2px rgba(255, 255, 255, 0.30) inset, 0 0 8px 1px rgba(255, 255, 255, 0.10) inset, 0 0 2px 0 rgba(0, 0, 0, 0.10)
@@ -247,6 +255,26 @@ Liquid Glass Safari Optimized:
         background: none !important;
         backdrop-filter: none !important;
       }
+
+      /* Nested wrapper cards — PERFORMANCE.
+         Native vertical/horizontal/grid stacks render no ha-card, so they are
+         already free. But custom wrappers that DO render their own ha-card
+         (stack-in-card, mod-card, layout-card grids, etc.) frost the wrapper
+         AND its children, producing a blur-on-blur that is both slow and muddy.
+         Uncomment and list the wrappers you use to keep the glass on the inner
+         cards only (or invert it to keep one outer glass panel instead). */
+      /*
+      :host(.type-custom-stack-in-card) ha-card,
+      :host(.type-custom-mod-card) ha-card {
+        background: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+      :host(.type-custom-stack-in-card) ha-card::before,
+      :host(.type-custom-mod-card) ha-card::before {
+        content: none !important;
+      }
+      */
 
     hui-card-features $:
       hui-card-feature $:

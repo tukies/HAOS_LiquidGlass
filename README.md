@@ -43,6 +43,22 @@ The theme uses Home Assistant theme variables plus global card styles through ca
 
 The CSS intentionally avoids SVG displacement filters and WebGL effects because this theme is targeted at Safari/WebKit.
 
+## Performance on large dashboards
+
+The glass effect comes from a per-card `backdrop-filter` blur. That blur is by far the biggest cost: every card re-samples the wallpaper behind it on each scroll frame, and the total cost scales with **blur radius × number of cards**. On a powerful desktop GPU this is a non-issue, but on iPhones, iPads, and very large dashboards it can cause scroll jank and extra battery use.
+
+If scrolling feels heavy:
+
+1. **Reduce or drop the blur** — the single most effective change. Edit `ha-card-backdrop-filter` in the theme:
+   - `saturate(1.55)` — vibrancy only, no blur (cheapest, still tinted with edge highlights)
+   - `blur(4px) saturate(1.55)` — lighter frosted look
+   - `blur(8px) saturate(1.55)` — the default
+2. **Prefer fewer, larger cards** over dozens of tiny tiles that each carry their own blur.
+3. **Avoid blur-on-blur** — if you use a custom wrapper that renders its own card around other cards (`stack-in-card`, `mod-card`, layout-card grids), enable the commented "Nested wrapper cards" block in the theme so only the inner cards frost.
+4. **Consider [`uix`](https://github.com/Lint-Free-Technology/uix)** instead of card-mod — it is a lighter drop-in for applying the theme's card styles at scale.
+
+Avoid "optimizations" like `will-change`, `contain`, or `isolation` on cards — they force a stacking/containing context that breaks the touch target of pop-outs such as Bubble Card pop-ups and dropdown menus.
+
 ## Default Theme Automation
 
 ```yaml
